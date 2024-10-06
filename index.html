@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitmod</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="w-screen h-screen" id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script>
+        ;(async () => {
+            const api_endpoint_url = 'http://localhost:5001'
+            const devices = JSON.parse(raw);
+    
+            // Initialize the map
+            const map = L.map('map').setView([51.505, -0.09], 13);
+    
+            // Load and display tile layer on the map (OpenStreetMap tiles)
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '© OpenStreetMap'
+            }).addTo(map);
+    
+            // Create bounds object to compute the view
+            const bounds = new L.LatLngBounds();
+    
+            // Loop through devices, plot markers, and add popups with a button
+            devices.map(el => {
+                const name = el.name
+                const { latitude, longitude, battery } = el.deviceData;
+                const latLng = { lat: latitude, lng: longitude };
+    
+                // Create a marker
+                const marker = L.marker([latitude, longitude]).addTo(map);
+    
+                // Create the popup content with name and a button
+                const popupContent = `
+                    <div>
+                        <h4>Name: ${name}</h4>
+                        <h4>Battery: ${battery}%</h4>
+                        <button class="bg-red-400 mt-2 px-4 py-2 leading-5 rounded-lg text-white text-sm font-medium" onclick="alert('Button clicked for ${name}')">Book me</button>
+                    </div>
+                `;
+    
+                // Bind the popup to the marker
+                marker.bindPopup(popupContent);
+    
+                // Add the marker to the bounds
+                bounds.extend(latLng);
+            });
+    
+            // Adjust the map view to fit all points
+            if (devices.length > 0) {
+                map.fitBounds(bounds);
+            }
+        })()
+    </script>
+</body>
+</html>

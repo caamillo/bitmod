@@ -1,0 +1,22 @@
+{
+  "name": "bitmod",
+  "module": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "bun run index.js",
+    "dev": "bun run --hot index.js"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@elysiajs/bearer": "^1.1.2",
+    "@elysiajs/cors": "^1.1.1",
+    "elysia": "^1.1.18",
+    "node-cron": "^3.0.3",
+    "redis": "^4.7.0"
+  }
+}
