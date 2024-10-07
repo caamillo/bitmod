@@ -2,7 +2,7 @@ const cron = require('node-cron')
 import redis from './redis'
 import { bookDevice } from './api/booking'
 
-const BOOKING_EXPIRY = 10 * 60; // 10 minutes in seconds
+const BOOKING_EXPIRY = 10 * 60 * 1000; // 10 minutes in seconds
 
 const checkBookings = async () => {
     try {
