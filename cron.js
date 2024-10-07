@@ -1,6 +1,6 @@
 const cron = require('node-cron')
-const redis = require('../redis')
-const { bookDevice } = require('./api/booking')
+import redis from './redis'
+import { bookDevice } from './api/booking'
 
 const BOOKING_EXPIRY = 10 * 60; // 10 minutes in seconds
 

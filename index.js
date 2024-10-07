@@ -7,8 +7,6 @@ import { bookDevice, unBookDevice } from './api/booking'
 import { getDevices } from './api/device'
 import { login } from './api/auth'
 
-require('./cron')
-
 const PESCARA_CITYCODE = 81
 
 new Elysia()

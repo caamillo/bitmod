@@ -1,5 +1,5 @@
-const { sendRequest, parseResponse } = require('./index')
-const redis = require('../redis')
+import { sendRequest, parseResponse } from './index'
+import redis from '../redis'
 
 export const bookDevice = async (token, deviceName) => {
     const route = '/booking'
