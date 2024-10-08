@@ -20,6 +20,12 @@ UUID2=<uuid2>
 
 I dont even know what uuid1 and uuid2 is used for but I found mine through the login request.
 
+Then, do `bun install` (you have to install [Bun](https://bun.sh)).
+And finally `bun start` to start the HTTPServer.
+Also u want to start the cron so open another CLI and type `bun run cron.js`.
+
+Enjoy ur ride sir 😽😽
+
 ## Todos
 
 - Store email:pass of bit user and when token is expired could be generated automatically.
