@@ -23,7 +23,7 @@ I dont even know what uuid1 and uuid2 is used for but I found mine through the l
 ## Todos
 
 - Store email:pass of bit user and when token is expired could be generated automatically.
-- Scan someway very cityid (Currently works only in Pescara / Montesilvano)
+- Scan someway every city ID (Currently works only in Pescara / Montesilvano)
 
 ## Disclaimer
 [Bit Mobility](https://bitmobility.it/) is a trademark of BIT Mobility Srl, and this project is user-made and not associated with the company in any way.
