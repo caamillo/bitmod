@@ -26,6 +26,8 @@ Also u want to start the cron so open another CLI and type `bun run cron.js`.
 
 Enjoy ur ride sir 😽😽
 
+BTW, there's also a frontend for this. [Go to repo](https://github.com/caamillo/bitmod-client)
+
 ## Todos
 
 - Store email:pass of bit user and when token is expired could be generated automatically.
