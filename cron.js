@@ -9,7 +9,6 @@ const checkBookings = async () => {
         const keys = await redis.keys('booking:*'); // Fetch all booking keys
         for (const key of keys) {
             let status = JSON.parse(await redis.get(key));
-            if (!status?.booking) continue
             const d = new Date(status.pushed_at)
             if (new Date() < d + BOOKING_EXPIRY) continue
     
@@ -24,7 +23,7 @@ const checkBookings = async () => {
 }
 
 
-cron.schedule('* * * * *', async () => {
+cron.schedule('*/5 * * * * *', async () => {
     console.log('Checking for active bookings...');
     await checkBookings();
 })
