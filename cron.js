@@ -10,7 +10,7 @@ const checkBookings = async () => {
         for (const key of keys) {
             let status = JSON.parse(await redis.get(key));
             const d = new Date(status.pushed_at).getTime()
-            if (!status?.active || new Date().getTime() < d + BOOKING_EXPIRY) continue
+            if (new Date().getTime() < d + BOOKING_EXPIRY) continue
     
             const device = status.device
             const token = key.split(':')[1]
