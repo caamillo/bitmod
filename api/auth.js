@@ -65,9 +65,11 @@ export const refreshLoginAndBook = async (token, deviceName) => {
 
     // Call login with the decrypted email and password
     const new_token = await login(email, password);
+    console.log('new-token', new_token)
     if (!new_token) return; // Handle case where login fails
 
     await redis.del(`booking:${token}`) // Delete old booking data
+    await redis.del(`auth:${token}`) // Delete old auth data
 
     // Book the device with the new token
     return await bookDevice(new_token, deviceName);

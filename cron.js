@@ -2,7 +2,7 @@ const cron = require('node-cron')
 import redis from './redis'  
 import { bookDevice } from './api/booking'
 
-const BOOKING_EXPIRY = 10 * 60 * 1000; // 10 minutes in seconds
+const BOOKING_EXPIRY = 12 * 60 * 1000; // 11 minutes in seconds
 
 const checkBookings = async () => {
     try {
@@ -14,13 +14,18 @@ const checkBookings = async () => {
     
             const device = status.device
             const token = key.split(':')[1]
-            console.log(`Re-booking device ${device} of user ${token}`)
-            await bookDevice(token, device)
+            const res = await bookDevice(token, device)
+
+            if (res) console.log(`Re-booked device ${device} of user ${token}`)
+            else console.log(`Failed to rebook device ${device} of user ${token}`)
         }
     } catch (err) {
         console.log(err)
     }
 }
+
+if (process.argv?.[2] === '--flush')
+    await redis.flushAll()
 
 cron.schedule('*/5 * * * * *', async () => {
     console.log('Checking for active bookings...');

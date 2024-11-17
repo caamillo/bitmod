@@ -5,8 +5,8 @@ import redis from '../redis'
 export const bookDevice = async (token, deviceName) => {
     const route = '/booking'
     let response = await sendRequest(token, route, 'POST', { deviceName })
-    if (!response.ok) response = await refreshLoginAndBook(token, deviceName)
-    if (response?.ok) await redis.set(`booking:${token}`, JSON.stringify({ device: deviceName, pushed_at: new Date().toISOString() }))
+    if (!response.ok) return await refreshLoginAndBook(token, deviceName)
+    await redis.set(`booking:${token}`, JSON.stringify({ device: deviceName, pushed_at: new Date().toISOString() }))
 
     const data = await parseResponse(response)
     return data
