@@ -34,4 +34,10 @@ new Elysia()
             .get('/book', async ({ query: {name}, bearer }) => bookDevice(bearer, name))
             .get('/unbook', async ({ bearer }) => unBookDevice(bearer))
     })
-    .listen(5001, () => console.log('Server started http://localhost:5001'))
+    .listen({
+        port: 5001,
+        tls: {
+            key: Bun.file(join(import.meta.dir, './certs/server.key')),
+            cert: Bun.file(join(import.meta.dir, './certs/server.crt'))
+        }
+    })
