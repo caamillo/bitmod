@@ -37,7 +37,7 @@ new Elysia()
     .listen({
         port: 5001,
         tls: {
-            key: Bun.file(join(import.meta.dir, './certs/server.key')),
-            cert: Bun.file(join(import.meta.dir, './certs/server.crt'))
+            key: Bun.file(`${import.meta.dir}/certs/server.key`),
+            cert: Bun.file(`${import.meta.dir}/certs/server.crt`)
         }
     })
