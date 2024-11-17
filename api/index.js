@@ -18,13 +18,12 @@ export const sendRequest = async (token, route, method, body) =>
     fetch(URL + route, { method, headers: getReqHeaders(token), body: JSON.stringify(body) })
 
 export const parseResponse = async (response) => {
-    const blob = await response.blob()
-    const data = await blob.text()
 
     try {
-        return JSON.parse(data)
+        const blob = await response?.blob()
+        const data = await blob?.text()
+        if (data) return JSON.parse(data)
     } catch (err) {
-        console.log('could not parse in JSON')
-        return data
+        console.log('[ERROR]: Could not parse response in JSON', err)
     }
 }
