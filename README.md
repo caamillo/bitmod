@@ -30,8 +30,7 @@ BTW, there's also a frontend for this. [Go to repo](https://github.com/caamillo/
 
 ## Todos
 
-- Store email:pass of bit user and when token is expired could be generated automatically.
 - Scan someway every city ID (Currently works only in Pescara / Montesilvano)
 
 ## Disclaimer
-[Bit Mobility](https://bitmobility.it/) is a trademark of BIT Mobility Srl, and this project is user-made and not associated with the company in any way.
+[Bit Mobility](https://bitmobility.it/) is a trademark of BIT Mobility Srl, this project is user-made and not associated with the company in any way.
